@@ -7,25 +7,26 @@ export const Themes = styled.div`
     justify-content: space-between;
     width: 800px;
     flex-wrap: wrap;
+`;
 
-    .theme-display {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        box-sizing: border-box;
-        background-color: ${colors.while};
-        margin: 5px;
-        border-radius: 15px;
-        padding: 20px;
-        width: 320px;
-        height: 260px;
+export const QuestionDisplay = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: ${colors.while};
+    margin: 5px;
+    border-radius: 15px;
+    padding: 20px;
+    width: 320px;
+    height: 260px;
+    cursor: pointer;
 
-        &:hover {
-            background-color: ${colors.main};
-        }
+    &:hover {
+        background-color: ${colors.main};
     }
 
-    .theme-display img {
+    img {
         width: 280px;
         height: 190px;
         border-radius: 15px;

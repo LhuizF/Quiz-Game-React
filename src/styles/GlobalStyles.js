@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import 'react-toastify/dist/ReactToastify.css';
 
 import colors from './colors';
 import './font.css';
@@ -16,6 +17,11 @@ export default createGlobalStyle`
         color: #fff;
     }
 
+    h1{
+        font-size: 60px;
+        margin: 40px
+    }
+
     button{
         cursor: pointer;
         border: none;
@@ -25,10 +31,6 @@ export default createGlobalStyle`
         cursor: pointer;
         color: #fff;
         text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
-        }
     }
 
     li{

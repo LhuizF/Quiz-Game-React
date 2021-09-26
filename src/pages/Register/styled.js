@@ -49,5 +49,9 @@ export const Div = styled.div`
 
     a {
         color: ${colors.main};
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 `;
