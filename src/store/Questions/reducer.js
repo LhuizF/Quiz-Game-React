@@ -1,5 +1,3 @@
-import { toast } from 'react-toastify';
-
 let score = 0;
 
 function verification(arr) {
@@ -11,9 +9,7 @@ function verification(arr) {
             score += 1;
         }
     }
-
-    toast.success(`${score} reducer`);
-    return score;
+    return `${score}/${arr.length}`;
 }
 
 function QuestionsReducer(state = 0, action) {

@@ -14,7 +14,7 @@ export default function Home() {
                             src="https://uploaddeimagens.com.br/images/003/449/169/original/math-display.jpg"
                             alt=""
                         />
-                        <h2>Matematica</h2>
+                        <h2>Matemática</h2>
                     </QuestionDisplay>
                 </Link>
                 <Link to="/questions/movie-theater">

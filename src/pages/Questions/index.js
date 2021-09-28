@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaArrowRight, FcCancel } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import { QuestionContainer, BtnContainer, NextBox, Btn } from './styled';
+import Scoreboard from '../../components/Scoreboard';
+import Score from '../../components/Score';
 import * as actions from '../../store/Questions/actions';
+import UserInput from '../../components/UserInput';
 
 import ApiQuestions from '../../mocks/questions.json';
 
 const result = [];
 
-export default function Questions({ match }) {
+export default function Questions({ match, history }) {
     const dispatch = useDispatch();
-    const score = useSelector((state) => state.questions);
-    console.log(score);
-
     const { theme } = match.params;
     const { name, questions } = ApiQuestions[theme];
+
+    const [finish, setFinish] = useState(false);
 
     const [idQuestion, setIdQuestion] = useState(0);
     const [alternatives, setAlternative] = useState(
         questions[idQuestion].alternatives
     );
+
+    const user = useSelector((state) => state.user);
 
     useEffect(() => {
         // console.log('passou no useEffect');
@@ -49,6 +53,11 @@ export default function Questions({ match }) {
             (alternative) => alternative.selected
         )[0];
 
+        if (!response) {
+            toast.warning('Selecione uma alternativa!');
+            return;
+        }
+
         if (response.length !== 0) {
             result.push(response);
         }
@@ -59,12 +68,26 @@ export default function Questions({ match }) {
             // Final
             dispatch(actions.Complete(result));
 
-            // toast.success(score);
+            setFinish(true);
         }
     };
+
+    if (!user) {
+        return <UserInput />;
+    }
+
+    if (finish) {
+        return <Score />;
+    }
+
     return (
         <>
             <h1>{name}</h1>
+            <Scoreboard
+                user={user}
+                questionsLength={questions.length}
+                idQuestion={idQuestion}
+            />
             <QuestionContainer>
                 <p>{questions[idQuestion].text}</p>
                 <BtnContainer>
@@ -92,3 +115,5 @@ export default function Questions({ match }) {
         </>
     );
 }
+
+// dividir em mais componentes aaaaaaaaaaaaa
