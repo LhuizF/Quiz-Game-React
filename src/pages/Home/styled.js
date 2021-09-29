@@ -15,7 +15,7 @@ export const QuestionDisplay = styled.div`
     flex-direction: column;
     box-sizing: border-box;
     background-color: ${colors.while};
-    margin: 5px;
+    margin: 15px;
     border-radius: 15px;
     padding: 20px;
     width: 320px;
@@ -24,6 +24,7 @@ export const QuestionDisplay = styled.div`
 
     &:hover {
         background-color: ${colors.main};
+        transform: scale(1.05);
     }
 
     img {

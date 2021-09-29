@@ -1,21 +1,33 @@
-let score = 0;
+const inicialState = {
+    user: { nick: '', score: '' }
+};
 
-function verification(arr) {
+function verification(score) {
     // eslint-disable-next-line
-    for (let response of arr) {
-        const { isTrue, selected } = response;
+    const correct = score.filter((alternative) => {
+        return alternative.isTrue && alternative.selected;
+    });
 
-        if (isTrue && selected) {
-            score += 1;
-        }
-    }
-    return `${score}/${arr.length}`;
+    return `${correct.length}/${score.length}`;
 }
 
-function QuestionsReducer(state = 0, action) {
+function QuestionsReducer(state = inicialState, action) {
     switch (action.type) {
-        case 'checkResponses':
-            return verification(action.payload);
+        case 'SET_USER': {
+            const newState = { ...inicialState };
+            newState.user.nick = action.payload.nick;
+            if (action.payload.score) {
+                newState.user.score = verification(action.payload.score);
+            }
+            return newState;
+        }
+
+        case 'RESET_USER': {
+            const newState = { ...inicialState };
+            newState.user.nick = '';
+            newState.user.score = '';
+            return newState;
+        }
         default:
             return state;
     }

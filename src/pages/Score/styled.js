@@ -10,7 +10,7 @@ export const ScoreContainer = styled.div`
     width: 50%;
     max-width: 600px;
     padding: 60px;
-    border-radius: 60px;
+    border-radius: 50px;
     font-size: 100px;
     text-align: center;
 `;

@@ -36,7 +36,7 @@ export default function Login() {
 
             <Div>
                 <p>
-                    Não tem conta?<Link to="/register"> Cadastre-se </Link>
+                    Não possui conta?<Link to="/register"> Cadastre-se </Link>
                 </p>
             </Div>
         </>

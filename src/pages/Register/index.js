@@ -45,7 +45,7 @@ export default function Register() {
 
             <Div>
                 <p>
-                    Não tem conta? <Link to="/login"> Cadastre-se </Link>
+                    Já possui conta? <Link to="/login"> Faça login </Link>
                 </p>
             </Div>
         </>

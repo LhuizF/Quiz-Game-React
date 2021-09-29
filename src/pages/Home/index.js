@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { Themes, QuestionDisplay } from './styled';
+import * as actions from '../../store/Questions/actions';
+
+import Timer from '../../components/Timer';
 
 export default function Home() {
     return (
         <>
+            <Timer />
             <h1>Escolha um tema</h1>
             <Themes>
                 <Link to="/questions/math">

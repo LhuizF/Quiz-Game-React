@@ -44,7 +44,6 @@ export const Main = styled.main`
     align-items: center;
     flex-direction: column;
     width: 90vw;
-    height: 70vh;
 `;
 
 export const MainForm = styled.form`

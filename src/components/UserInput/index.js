@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { toast } from 'react-toastify';
 import { Container } from './styled';
-import * as actions from '../../store/Users/actions';
+import * as actions from '../../store/Questions/actions';
 
 export default function UserInput() {
     const dispatch = useDispatch();
-    const [user, setUser] = useState('');
+    const [nick, setUser] = useState('');
 
     const handleStart = () => {
-        if (user.length < 4 || user.length > 13) {
-            toast.error('Nick deve ter entre 4 a 13 caracteres');
+        if (nick.length < 3 || nick.length > 12) {
+            toast.error('Nick deve ter entre 3 a 12 caracteres');
             return;
         }
-        dispatch(actions.NewUser(user));
+        dispatch(actions.NewUser(nick));
     };
 
     return (
@@ -25,7 +25,7 @@ export default function UserInput() {
                     type="text"
                     placeholder="Digite seu nome aqui"
                     onChange={(e) => setUser(e.target.value)}
-                    value={user}
+                    value={nick}
                 />
                 <button type="button" onClick={handleStart}>
                     Iniciar

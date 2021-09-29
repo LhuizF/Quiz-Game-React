@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 
 import { QuestionContainer, BtnContainer, NextBox, Btn } from './styled';
 import Scoreboard from '../../components/Scoreboard';
-import Score from '../../components/Score';
 import * as actions from '../../store/Questions/actions';
 import UserInput from '../../components/UserInput';
 
@@ -18,14 +17,12 @@ export default function Questions({ match, history }) {
     const { theme } = match.params;
     const { name, questions } = ApiQuestions[theme];
 
-    const [finish, setFinish] = useState(false);
-
     const [idQuestion, setIdQuestion] = useState(0);
     const [alternatives, setAlternative] = useState(
         questions[idQuestion].alternatives
     );
 
-    const user = useSelector((state) => state.user);
+    const nick = useSelector((state) => state.questions.user.nick);
 
     useEffect(() => {
         // console.log('passou no useEffect');
@@ -57,34 +54,27 @@ export default function Questions({ match, history }) {
             toast.warning('Selecione uma alternativa!');
             return;
         }
-
-        if (response.length !== 0) {
-            result.push(response);
-        }
+        result.push(response);
 
         if (idQuestion < questions.length - 1) {
             setIdQuestion(idQuestion + 1);
         } else {
             // Final
-            dispatch(actions.Complete(result));
-
-            setFinish(true);
+            dispatch(actions.NewUser(nick, result));
+            result.length = 0;
+            history.push('/score');
         }
     };
 
-    if (!user) {
+    if (!nick) {
         return <UserInput />;
-    }
-
-    if (finish) {
-        return <Score />;
     }
 
     return (
         <>
             <h1>{name}</h1>
             <Scoreboard
-                user={user}
+                user={nick}
                 questionsLength={questions.length}
                 idQuestion={idQuestion}
             />
