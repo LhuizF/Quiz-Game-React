@@ -2,7 +2,14 @@ import React from 'react';
 
 import { ScoreboardDiv } from './styled';
 
-export default function Scoreboard({ user, questionsLength, idQuestion }) {
+// import Timer from '../Timer';
+
+export default function Scoreboard({
+    user,
+    questionsLength,
+    idQuestion,
+    Timer
+}) {
     return (
         <ScoreboardDiv>
             <h2>Placar</h2>
@@ -14,7 +21,7 @@ export default function Scoreboard({ user, questionsLength, idQuestion }) {
                     {idQuestion + 1}/{questionsLength}
                 </p>
                 <p>Tempo</p>
-                <p>00:00</p>
+                <Timer />
             </div>
         </ScoreboardDiv>
     );

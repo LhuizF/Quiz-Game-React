@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaArrowRight } from 'react-icons/fa';
-import { toast } from 'react-toastify';
+import { cssTransition, toast } from 'react-toastify';
 
 import { QuestionContainer, BtnContainer, NextBox, Btn } from './styled';
 import Scoreboard from '../../components/Scoreboard';
 import * as actions from '../../store/Questions/actions';
 import UserInput from '../../components/UserInput';
+import Timer from '../../components/Timer';
 
 import ApiQuestions from '../../mocks/questions.json';
 
@@ -14,6 +15,7 @@ const result = [];
 
 export default function Questions({ match, history }) {
     const dispatch = useDispatch();
+
     const { theme } = match.params;
     const { name, questions } = ApiQuestions[theme];
 
@@ -25,7 +27,6 @@ export default function Questions({ match, history }) {
     const nick = useSelector((state) => state.questions.user.nick);
 
     useEffect(() => {
-        // console.log('passou no useEffect');
         setAlternative(questions[idQuestion].alternatives);
     }, [questions, idQuestion]);
 
@@ -44,6 +45,8 @@ export default function Questions({ match, history }) {
         });
         setAlternative(newAlternatives);
     };
+
+    console.log(Timer);
 
     const handleNextQuestion = () => {
         const response = alternatives.filter(
@@ -77,6 +80,7 @@ export default function Questions({ match, history }) {
                 user={nick}
                 questionsLength={questions.length}
                 idQuestion={idQuestion}
+                Timer={Timer}
             />
             <QuestionContainer>
                 <p>{questions[idQuestion].text}</p>
@@ -105,5 +109,3 @@ export default function Questions({ match, history }) {
         </>
     );
 }
-
-// dividir em mais componentes aaaaaaaaaaaaa
