@@ -1,14 +1,18 @@
 const inicialState = {
-    user: { nick: '', score: '' }
+    user: { nick: '', hits: '', time: '', score: 0 }
 };
 
-function verification(score) {
-    // eslint-disable-next-line
-    const correct = score.filter((alternative) => {
+function verification(hits) {
+    const correct = hits.filter((alternative) => {
         return alternative.isTrue && alternative.selected;
     });
 
-    return `${correct.length}/${score.length}`;
+    return `${correct.length}/${hits.length}`;
+}
+
+function calculateScore(hits, time) {
+    const newHits = (hits[0] / hits[2]) * 100;
+    console.log(newHits);
 }
 
 function QuestionsReducer(state = inicialState, action) {
@@ -16,16 +20,22 @@ function QuestionsReducer(state = inicialState, action) {
         case 'SET_USER': {
             const newState = { ...inicialState };
             newState.user.nick = action.payload.nick;
-            if (action.payload.score) {
-                newState.user.score = verification(action.payload.score);
+            if (action.payload.hits) {
+                newState.user.hits = verification(action.payload.hits);
+                newState.user.time = `${action.payload.time} min`;
+                newState.user.score = calculateScore(
+                    newState.user.hits,
+                    action.payload.time
+                );
             }
+
             return newState;
         }
 
         case 'RESET_USER': {
             const newState = { ...inicialState };
             newState.user.nick = '';
-            newState.user.score = '';
+            newState.user.hits = '';
             return newState;
         }
         default:

@@ -11,6 +11,16 @@ export const ScoreContainer = styled.div`
     max-width: 600px;
     padding: 60px;
     border-radius: 50px;
-    font-size: 100px;
-    text-align: center;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        h2 {
+            font-weight: bold;
+        }
+        p {
+            font-size: 20px;
+        }
+    }
 `;

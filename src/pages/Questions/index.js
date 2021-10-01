@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaArrowRight } from 'react-icons/fa';
-import { cssTransition, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { QuestionContainer, BtnContainer, NextBox, Btn } from './styled';
 import Scoreboard from '../../components/Scoreboard';
 import * as actions from '../../store/Questions/actions';
 import UserInput from '../../components/UserInput';
-import Timer from '../../components/Timer';
 
 import ApiQuestions from '../../mocks/questions.json';
 
@@ -46,8 +45,6 @@ export default function Questions({ match, history }) {
         setAlternative(newAlternatives);
     };
 
-    console.log(Timer);
-
     const handleNextQuestion = () => {
         const response = alternatives.filter(
             (alternative) => alternative.selected
@@ -63,7 +60,9 @@ export default function Questions({ match, history }) {
             setIdQuestion(idQuestion + 1);
         } else {
             // Final
-            dispatch(actions.NewUser(nick, result));
+            const time = document.getElementById('time').innerText;
+
+            dispatch(actions.NewUser(nick, result, time));
             result.length = 0;
             history.push('/score');
         }
@@ -80,7 +79,6 @@ export default function Questions({ match, history }) {
                 user={nick}
                 questionsLength={questions.length}
                 idQuestion={idQuestion}
-                Timer={Timer}
             />
             <QuestionContainer>
                 <p>{questions[idQuestion].text}</p>
@@ -90,10 +88,7 @@ export default function Questions({ match, history }) {
                             key={alternative.id}
                             selected={alternative.selected}
                             onClick={() =>
-                                handleSelectedQuestion(
-                                    alternative.id,
-                                    alternative.selected
-                                )
+                                handleSelectedQuestion(alternative.id)
                             }
                         >
                             {alternative.option}

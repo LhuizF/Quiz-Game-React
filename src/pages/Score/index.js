@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useLocation } from 'react-router-dom';
@@ -8,7 +8,9 @@ import * as actions from '../../store/Questions/actions';
 export default function Score() {
     const dispatch = useDispatch();
     const location = useLocation();
-    const { nick, score } = useSelector((state) => state.questions.user);
+    const { nick, hits, time, score } = useSelector(
+        (state) => state.questions.user
+    );
 
     useEffect(() => {
         return () => {
@@ -22,8 +24,26 @@ export default function Score() {
         <>
             <h1>Pontuação Total</h1>
             <ScoreContainer>
-                {nick} <br />
-                {score}
+                <div className="header">
+                    <div>
+                        <h2>Nome</h2>
+                        <p>{nick}</p>
+                    </div>
+
+                    <div>
+                        <h2>Acertos</h2>
+                        <p>{hits}</p>
+                    </div>
+
+                    <div>
+                        <h2>Tempo</h2>
+                        <p>{time}</p>
+                    </div>
+                    <div>
+                        <h2>Pontuação</h2>
+                        <p>{score}</p>
+                    </div>
+                </div>
             </ScoreContainer>
         </>
     );

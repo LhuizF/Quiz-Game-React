@@ -5,7 +5,7 @@ export const Container = styled.div`
     margin-top: 30px;
     background-color: ${colors.while};
     min-width: 400px;
-    padding: 28px;
+    padding: 28px 60px;
     height: 100px;
     display: flex;
     justify-content: space-between;

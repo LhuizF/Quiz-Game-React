@@ -1,19 +1,11 @@
-// export function Finish(result, user) {
-//     return {
-//         type: 'CHECK_RESULT',
-//         payload: {
-//             nick: user,
-//             score: result
-//         }
-//     };
-// }
-
-export function NewUser(nick = '', result = '') {
+export function NewUser(nick, result, time) {
     return {
         type: 'SET_USER',
         payload: {
             nick,
-            score: result
+            hits: result,
+            time,
+            score: 0
         }
     };
 }

@@ -27,6 +27,7 @@ module.exports = {
         'no-param-reassign': 'off',
         'comma-dangle': ['error', 'never'],
         'no-unused-vars': 'off',
+        'no-plusplus': 'off',
 
         // react
         'react/jsx-uses-react': 'error',
