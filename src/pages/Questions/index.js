@@ -8,27 +8,33 @@ import Scoreboard from '../../components/Scoreboard';
 import * as actions from '../../store/Questions/actions';
 import UserInput from '../../components/UserInput';
 
-import ApiQuestions from '../../mocks/questions.json';
+import axios from '../../service/axios';
 
 const result = [];
-
+// questions é um array de objetos contendo as peguntas
+// alternatives é um array contendo as respostas
 export default function Questions({ match, history }) {
     const dispatch = useDispatch();
-
     const { theme } = match.params;
-    const { name, questions } = ApiQuestions[theme];
+    const [data, setData] = useState();
 
+    useEffect(() => {
+        async function getDate() {
+            const response = await axios.get(`/themes?path=${theme}`);
+            setData(response.data[0]);
+        }
+        getDate();
+    }, [theme]);
+
+    const { name, questions } = data || 'qu';
+    // const [questions, setQuestions] = useState([]);
     const [idQuestion, setIdQuestion] = useState(0);
-    const [alternatives, setAlternative] = useState(
+    const [alternatives, setAlternatives] = useState(
         questions[idQuestion].alternatives
     );
 
-    const nick = useSelector((state) => state.questions.user.nick);
-
-    useEffect(() => {
-        setAlternative(questions[idQuestion].alternatives);
-    }, [questions, idQuestion]);
-
+    const nick = useSelector((state) => state.questions.nick);
+    console.log(questions);
     const handleSelectedQuestion = (id) => {
         const newAlternatives = alternatives.map((alternative) => {
             alternative.selected = false;
@@ -42,7 +48,7 @@ export default function Questions({ match, history }) {
 
             return alternative;
         });
-        setAlternative(newAlternatives);
+        setAlternatives(newAlternatives);
     };
 
     const handleNextQuestion = () => {
@@ -62,7 +68,7 @@ export default function Questions({ match, history }) {
             // Final
             const time = document.getElementById('time').innerText;
 
-            dispatch(actions.NewUser(nick, result, time));
+            dispatch(actions.NewUser(nick, result, time, name));
             result.length = 0;
             history.push('/score');
         }

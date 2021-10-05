@@ -8,7 +8,7 @@ export const ScoreContainer = styled.div`
         ${colors.blueLight}
     );
     width: 50%;
-    max-width: 600px;
+    max-width: 800px;
     padding: 60px;
     border-radius: 50px;
 

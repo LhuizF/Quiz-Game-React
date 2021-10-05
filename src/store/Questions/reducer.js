@@ -1,5 +1,9 @@
 const inicialState = {
-    user: { nick: '', hits: '', time: '', score: 0 }
+    nick: '',
+    theme: '',
+    hits: '',
+    time: '',
+    score: 0
 };
 
 function verification(hits) {
@@ -11,20 +15,24 @@ function verification(hits) {
 }
 
 function calculateScore(hits, time) {
-    const newHits = (hits[0] / hits[2]) * 100;
-    console.log(newHits);
+    const newDits = hits.split('/')[0] * 100;
+    const timeSeg = Number(time.slice(0, 2)) * 60 + Number(time.slice(-2));
+    const score = newDits - timeSeg;
+
+    return score;
 }
 
 function QuestionsReducer(state = inicialState, action) {
     switch (action.type) {
         case 'SET_USER': {
             const newState = { ...inicialState };
-            newState.user.nick = action.payload.nick;
+            newState.nick = action.payload.nick;
             if (action.payload.hits) {
-                newState.user.hits = verification(action.payload.hits);
-                newState.user.time = `${action.payload.time} min`;
-                newState.user.score = calculateScore(
-                    newState.user.hits,
+                newState.hits = verification(action.payload.hits);
+                newState.time = action.payload.time;
+                newState.theme = action.payload.theme;
+                newState.score = calculateScore(
+                    newState.hits,
                     action.payload.time
                 );
             }
@@ -34,8 +42,7 @@ function QuestionsReducer(state = inicialState, action) {
 
         case 'RESET_USER': {
             const newState = { ...inicialState };
-            newState.user.nick = '';
-            newState.user.hits = '';
+            console.log(newState);
             return newState;
         }
         default:

@@ -8,8 +8,8 @@ import * as actions from '../../store/Questions/actions';
 export default function Score() {
     const dispatch = useDispatch();
     const location = useLocation();
-    const { nick, hits, time, score } = useSelector(
-        (state) => state.questions.user
+    const { nick, theme, hits, time, score } = useSelector(
+        (state) => state.questions
     );
 
     useEffect(() => {
@@ -28,6 +28,11 @@ export default function Score() {
                     <div>
                         <h2>Nome</h2>
                         <p>{nick}</p>
+                    </div>
+
+                    <div>
+                        <h2>Tema</h2>
+                        <p>{theme}</p>
                     </div>
 
                     <div>
