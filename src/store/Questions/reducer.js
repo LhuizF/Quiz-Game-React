@@ -42,7 +42,6 @@ function QuestionsReducer(state = inicialState, action) {
 
         case 'RESET_USER': {
             const newState = { ...inicialState };
-            console.log(newState);
             return newState;
         }
         default:

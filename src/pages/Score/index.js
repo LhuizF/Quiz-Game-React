@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { ScoreContainer } from './styled';
 import * as actions from '../../store/Questions/actions';
+import axios from '../../service/axios';
 
 export default function Score() {
     const dispatch = useDispatch();
@@ -12,13 +13,37 @@ export default function Score() {
         (state) => state.questions
     );
 
+    const getDate = () => {
+        const hours = new Date().toLocaleTimeString('pt-br', {
+            timeStyle: 'short'
+        });
+        const date = new Date().toLocaleDateString();
+
+        return `${date} ${hours}`;
+    };
+
     useEffect(() => {
+        async function postRecord() {
+            await axios.post('/records', {
+                nick,
+                theme,
+                hits,
+                time,
+                score,
+                date: getDate()
+            });
+        }
+
+        if (nick) {
+            postRecord();
+        }
+
         return () => {
             if (location !== '/score') {
                 dispatch(actions.ResetUser());
             }
         };
-    }, [location, dispatch]);
+    }, [location, dispatch, nick, theme, hits, time, score]);
 
     return (
         <>

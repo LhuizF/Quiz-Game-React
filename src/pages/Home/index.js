@@ -12,11 +12,9 @@ export default function Home() {
             const response = await axios.get('/themes');
             setThemes(response.data);
         }
-
         getDate();
     }, []);
 
-    console.log(themes);
     return (
         <>
             <h1>Escolha um tema</h1>

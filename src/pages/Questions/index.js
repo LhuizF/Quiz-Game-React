@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaArrowRight } from 'react-icons/fa';
 import { toast } from 'react-toastify';
@@ -7,34 +7,33 @@ import { QuestionContainer, BtnContainer, NextBox, Btn } from './styled';
 import Scoreboard from '../../components/Scoreboard';
 import * as actions from '../../store/Questions/actions';
 import UserInput from '../../components/UserInput';
-
 import axios from '../../service/axios';
 
 const result = [];
-// questions é um array de objetos contendo as peguntas
-// alternatives é um array contendo as respostas
+
 export default function Questions({ match, history }) {
     const dispatch = useDispatch();
     const { theme } = match.params;
-    const [data, setData] = useState();
 
-    useEffect(() => {
+    const [data, setData] = useState(() => {
         async function getDate() {
             const response = await axios.get(`/themes?path=${theme}`);
             setData(response.data[0]);
         }
         getDate();
-    }, [theme]);
+    });
 
-    const { name, questions } = data || 'qu';
-    // const [questions, setQuestions] = useState([]);
+    const name = data ? data.name : '';
+    const questions = useMemo(() => (data ? data.questions : []), [data]);
     const [idQuestion, setIdQuestion] = useState(0);
-    const [alternatives, setAlternatives] = useState(
-        questions[idQuestion].alternatives
-    );
+    const [alternatives, setAlternatives] = useState([]);
+
+    useEffect(() => {
+        setAlternatives(data ? questions[idQuestion].alternatives : []);
+    }, [data, idQuestion, questions]);
 
     const nick = useSelector((state) => state.questions.nick);
-    console.log(questions);
+
     const handleSelectedQuestion = (id) => {
         const newAlternatives = alternatives.map((alternative) => {
             alternative.selected = false;
