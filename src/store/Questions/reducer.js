@@ -3,7 +3,8 @@ const inicialState = {
     theme: '',
     hits: '',
     time: '',
-    score: 0
+    score: 0,
+    email: ''
 };
 
 function verification(hits) {
@@ -27,6 +28,7 @@ function QuestionsReducer(state = inicialState, action) {
         case 'SET_USER': {
             const newState = { ...inicialState };
             newState.nick = action.payload.nick;
+            newState.email = action.payload.email;
             if (action.payload.hits) {
                 newState.hits = verification(action.payload.hits);
                 newState.time = action.payload.time;

@@ -9,10 +9,9 @@ import * as actions from '../../store/Questions/actions';
 import UserInput from '../../components/UserInput';
 import axios from '../../service/axios';
 
-const result = [];
+import NextButton from '../../components/NextButton';
 
 export default function Questions({ match, history }) {
-    const dispatch = useDispatch();
     const { theme } = match.params;
 
     const [data, setData] = useState(() => {
@@ -23,7 +22,7 @@ export default function Questions({ match, history }) {
         getDate();
     });
 
-    const name = data ? data.name : '';
+    const themeName = data ? data.name : '';
     const questions = useMemo(() => (data ? data.questions : []), [data]);
     const [idQuestion, setIdQuestion] = useState(0);
     const [alternatives, setAlternatives] = useState([]);
@@ -50,36 +49,13 @@ export default function Questions({ match, history }) {
         setAlternatives(newAlternatives);
     };
 
-    const handleNextQuestion = () => {
-        const response = alternatives.filter(
-            (alternative) => alternative.selected
-        )[0];
-
-        if (!response) {
-            toast.warning('Selecione uma alternativa!');
-            return;
-        }
-        result.push(response);
-
-        if (idQuestion < questions.length - 1) {
-            setIdQuestion(idQuestion + 1);
-        } else {
-            // Final
-            const time = document.getElementById('time').innerText;
-
-            dispatch(actions.NewUser(nick, result, time, name));
-            result.length = 0;
-            history.push('/score');
-        }
-    };
-
     if (!nick) {
         return <UserInput />;
     }
 
     return (
         <>
-            <h1>{name}</h1>
+            <h1>{themeName}</h1>
             <Scoreboard
                 user={nick}
                 questionsLength={questions.length}
@@ -101,11 +77,19 @@ export default function Questions({ match, history }) {
                     ))}
                 </BtnContainer>
             </QuestionContainer>
-            <NextBox>
+            <NextButton
+                alternatives={alternatives}
+                idQuestion={idQuestion}
+                questions={questions}
+                setIdQuestion={setIdQuestion}
+                history={history}
+                themeName={themeName}
+            />
+            {/* <NextBox>
                 <button type="button" onClick={handleNextQuestion}>
                     <FaArrowRight size={24} />
                 </button>
-            </NextBox>
+            </NextBox> */}
         </>
     );
 }

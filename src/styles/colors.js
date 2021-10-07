@@ -1,6 +1,7 @@
 export default {
     background: '#1A191E',
     main: '#1F53E4',
+    mainDark: '#1F409D',
     blueLight: '#04D5F4',
     blueDark: '#0DACF0',
     while: '#f0f0f0',

@@ -1,25 +1,44 @@
 import styled from 'styled-components';
 import colors from '../../styles/colors';
 
-export const Container = styled.div`
-    margin-top: 30px;
-    background-color: ${colors.while};
-    min-width: 400px;
-    padding: 28px 60px;
-    height: 100px;
+export const MainDiv = styled.div`
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    border-radius: 12px;
+    box-sizing: border-box;
+    background-color: ${colors.while};
+    padding: 30px 76px;
+    border-radius: 30px;
+    max-width: 550px;
+    height: 580px;
+    margin-top: 30px;
+    color: #000;
+    text-align: justify;
+
+    img {
+        width: 165px;
+        margin-bottom: 40px;
+    }
+
+    label {
+        display: flex;
+        align-items: center;
+        background-color: ${colors.main};
+        width: 80%;
+        box-sizing: border-box;
+        padding: 2px 6px;
+        border-radius: 12px;
+        margin-top: 20px;
+        color: #fff;
+    }
 
     input {
-        background-color: ${colors.main};
+        background-color: transparent;
         border: none;
-        width: 70%;
+        width: 100%;
         height: 30px;
-        padding: 0 10px;
-        border-radius: 10px;
         color: #fff;
+        padding: 0 4px;
 
         &::placeholder {
             color: #577eeb;
@@ -27,39 +46,26 @@ export const Container = styled.div`
     }
 
     button {
-        height: 30px;
-        width: 24%;
-        background-image: linear-gradient(to right, ${colors.main}, #6d93df);
+        background-color: ${colors.main};
         border-radius: 10px;
+        width: 40%;
+        height: 42px;
         color: #fff;
-        position: relative;
-        z-index: 1;
-        overflow: hidden;
+        box-shadow: ${colors.mainDark} 0px 4px 0px 0px;
+        margin-top: 10px;
+        font-size: 16px;
         font-weight: bold;
 
-        &:before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0%;
-            border-radius: 12px;
-            height: 100%;
-            background-color: ${colors.main};
-            transition: all 0.3s;
-            z-index: -1;
-        }
-
         &:hover {
-            &:before {
-                width: 100%;
-            }
+            height: 42px;
+            margin-top: 12px;
+            box-shadow: #1b3d9e 0px 2px 0px 0px;
         }
 
         &:active {
-            filter: brightness(0.65);
+            height: 42px;
+            margin-top: 14px;
+            box-shadow: none;
         }
     }
 `;
-
-// Que componente feio

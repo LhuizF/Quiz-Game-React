@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { RecordContainer } from './styled';
+import { TableContainer } from './styled';
 import axios from '../../service/axios';
 
 export default function Records() {
@@ -24,10 +24,11 @@ export default function Records() {
     return (
         <>
             <h1>Recordes</h1>
-            <RecordContainer>
+            <TableContainer>
                 <table>
                     <thead>
                         <tr>
+                            <th>N°</th>
                             <th>Nome</th>
                             <th>Tema</th>
                             <th>Acertos</th>
@@ -36,9 +37,12 @@ export default function Records() {
                             <th>Data/Hora</th>
                         </tr>
                     </thead>
-                    {records.map((record) => (
+                    {records.map((record, i) => (
                         <tbody key={record.id}>
                             <tr>
+                                <td className={`ptn-${i + 1}`}>{`${
+                                    i + 1
+                                }°`}</td>
                                 <td>{record.nick}</td>
                                 <td>{record.theme}</td>
                                 <td>{record.hits}</td>
@@ -49,7 +53,7 @@ export default function Records() {
                         </tbody>
                     ))}
                 </table>
-            </RecordContainer>
+            </TableContainer>
         </>
     );
 }
