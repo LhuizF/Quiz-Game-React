@@ -5,8 +5,18 @@ export const Themes = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 800px;
+    width: 750px;
     flex-wrap: wrap;
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+        width: 90%;
+
+        a,
+        div {
+            width: 100%;
+        }
+    }
 `;
 
 export const QuestionDisplay = styled.div`
@@ -19,7 +29,6 @@ export const QuestionDisplay = styled.div`
     border-radius: 15px;
     padding: 20px;
     width: 320px;
-    height: 260px;
     cursor: pointer;
 
     &:hover {
@@ -37,5 +46,24 @@ export const QuestionDisplay = styled.div`
     h2 {
         font-size: 30px;
         color: #000;
+        text-align: center;
+    }
+
+    @media (max-width: 800px) {
+        margin: 0 0 20px;
+        flex-direction: row;
+
+        img {
+            width: 50%;
+            height: 40%;
+        }
+
+        h2 {
+            margin-left: 10px;
+            font-size: 20px;
+        }
+        &:hover {
+            transform: none;
+        }
     }
 `;

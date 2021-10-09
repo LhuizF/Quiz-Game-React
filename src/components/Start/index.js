@@ -31,16 +31,20 @@ export default function UserInput() {
         <>
             <MainDiv>
                 <img src={LogoQuiz} alt="Logo" />
-                <p>
-                    Você está prestes a iniciar o quiz, abaixo preencha com seu
-                    nome e email (email não obrigatório).
-                </p>
-                <p>
-                    Ao clicar em iniciar o tempo será iniciado e você começará a
-                    responder às perguntas do tema que selecionou, sua pontuação
-                    será o número de acertos vezes 100 menos o tempo que gastou
-                    para responder todas as perguntas.
-                </p>
+                <div className="text-div">
+                    <p>
+                        Você está prestes a iniciar o quiz, abaixo preencha com
+                        seu nome e email (email não obrigatório).
+                    </p>
+                    <p>
+                        Ao clicar em iniciar o tempo será iniciado e você
+                        começará a responder às perguntas do tema que
+                        selecionou, sua pontuação será o número de acertos vezes
+                        100 menos o tempo que gastou para responder todas as
+                        perguntas.
+                    </p>
+                </div>
+
                 <label htmlFor="nick">
                     <HiUserCircle size={28} />
                     <input

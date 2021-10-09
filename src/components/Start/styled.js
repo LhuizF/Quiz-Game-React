@@ -7,17 +7,20 @@ export const MainDiv = styled.div`
     align-items: center;
     box-sizing: border-box;
     background-color: ${colors.while};
-    padding: 30px 76px;
+    padding: 30px;
     border-radius: 30px;
     max-width: 550px;
-    height: 580px;
     margin-top: 30px;
     color: #000;
     text-align: justify;
 
+    .text-div {
+        width: 80%;
+        margin: 20px 0;
+    }
+
     img {
         width: 165px;
-        margin-bottom: 40px;
     }
 
     label {
@@ -67,5 +70,10 @@ export const MainDiv = styled.div`
             margin-top: 14px;
             box-shadow: none;
         }
+    }
+
+    @media (max-width: 800px) {
+        padding: 5px 15px;
+        margin-bottom: 15px;
     }
 `;

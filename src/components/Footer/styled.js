@@ -13,4 +13,8 @@ export const FooterDiv = styled.footer`
         ${colors.main},
         ${colors.blueLight}
     );
+
+    @media (max-width: 800px) {
+        position: relative;
+    }
 `;

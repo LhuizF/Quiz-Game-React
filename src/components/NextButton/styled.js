@@ -6,7 +6,7 @@ export const NextBox = styled.div`
     align-items: center;
     justify-content: flex-end;
     max-width: 600px;
-    width: 50%;
+    width: 90%;
     margin: 10px;
 
     button {

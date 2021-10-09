@@ -19,7 +19,8 @@ export default createGlobalStyle`
 
     h1{
         font-size: 60px;
-        margin: 40px
+        margin: 40px;
+        text-align: center;
     }
 
     button{
@@ -35,6 +36,13 @@ export default createGlobalStyle`
 
     li{
         list-style: none;
+    }
+
+    @media (max-width: 800px){
+        h1 {
+            font-size: 36px;
+            margin: 20px;
+        }
     }
 `;
 

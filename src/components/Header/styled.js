@@ -29,12 +29,14 @@ export const Nav = styled.nav`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 20%;
     }
 
     li {
         font-size: 22px;
 
+        &:last-child {
+            margin-left: 20px;
+        }
         &:hover {
             text-decoration: underline;
         }

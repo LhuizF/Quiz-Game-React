@@ -20,6 +20,10 @@ function calculateScore(hits, time) {
     const timeSeg = Number(time.slice(0, 2)) * 60 + Number(time.slice(-2));
     const score = newDits - timeSeg;
 
+    if (score < 0) {
+        return 0;
+    }
+
     return score;
 }
 
