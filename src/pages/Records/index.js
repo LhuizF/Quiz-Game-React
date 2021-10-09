@@ -25,34 +25,30 @@ export default function Records() {
         <>
             <h1>Recordes</h1>
             <TableContainer>
-                <table>
-                    <thead>
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Nome</th>
+                        <th>Tema</th>
+                        <th>Acertos</th>
+                        <th>Tempo</th>
+                        <th>Pontuação</th>
+                        <th>Data/Hora</th>
+                    </tr>
+                </thead>
+                {records.map((record, i) => (
+                    <tbody key={record.id}>
                         <tr>
-                            <th>N°</th>
-                            <th>Nome</th>
-                            <th>Tema</th>
-                            <th>Acertos</th>
-                            <th>Tempo</th>
-                            <th>Pontuação</th>
-                            <th>Data/Hora</th>
+                            <td className={`ptn-${i + 1}`}>{`${i + 1}°`}</td>
+                            <td>{record.nick}</td>
+                            <td>{record.theme}</td>
+                            <td>{record.hits}</td>
+                            <td>{record.time}</td>
+                            <td>{record.score}</td>
+                            <td>{record.date}</td>
                         </tr>
-                    </thead>
-                    {records.map((record, i) => (
-                        <tbody key={record.id}>
-                            <tr>
-                                <td className={`ptn-${i + 1}`}>{`${
-                                    i + 1
-                                }°`}</td>
-                                <td>{record.nick}</td>
-                                <td>{record.theme}</td>
-                                <td>{record.hits}</td>
-                                <td>{record.time}</td>
-                                <td>{record.score}</td>
-                                <td>{record.date}</td>
-                            </tr>
-                        </tbody>
-                    ))}
-                </table>
+                    </tbody>
+                ))}
             </TableContainer>
         </>
     );

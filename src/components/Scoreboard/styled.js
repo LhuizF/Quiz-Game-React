@@ -6,7 +6,7 @@ export const ScoreboardDiv = styled.div`
     overflow: hidden;
     position: absolute;
     top: 10%;
-    right: 60px;
+    right: 5%;
 
     h2 {
         background-image: linear-gradient(
@@ -26,5 +26,20 @@ export const ScoreboardDiv = styled.div`
         width: 100%;
         color: #000;
         text-align: center;
+    }
+
+    @media (max-width: 800px) {
+        top: 70px;
+        width: 90%;
+        margin: 0 auto;
+
+        h2 {
+            width: 100%;
+        }
+
+        div {
+            display: flex;
+            justify-content: space-around;
+        }
     }
 `;

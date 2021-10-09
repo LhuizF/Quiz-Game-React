@@ -1,12 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { FaArrowRight } from 'react-icons/fa';
-import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
-import { QuestionContainer, BtnContainer, NextBox, Btn } from './styled';
+import { QuestionContainer, BtnContainer, MainQuestion, Btn } from './styled';
 import Scoreboard from '../../components/Scoreboard';
-import * as actions from '../../store/Questions/actions';
-import UserInput from '../../components/UserInput';
+import Start from '../../components/Start';
 import axios from '../../service/axios';
 
 import NextButton from '../../components/NextButton';
@@ -14,22 +11,28 @@ import NextButton from '../../components/NextButton';
 export default function Questions({ match, history }) {
     const { theme } = match.params;
 
-    const [data, setData] = useState(() => {
+    const [themeName, setThemeName] = useState('');
+    const [questions, setQuestions] = useState([]);
+    const [idQuestion, setIdQuestion] = useState(0);
+    const [alternatives, setAlternatives] = useState([]);
+    const [data, setData] = useState();
+
+    // const themeName = data ? data.name : '';
+    // const questions = useMemo(() => (data ? data.questions : []), [data]);
+
+    useEffect(() => {
         async function getDate() {
             const response = await axios.get(`/themes?path=${theme}`);
             setData(response.data[0]);
+            setThemeName(response.data[0].name);
+            setQuestions(response.data[0].questions);
+            setAlternatives(
+                response.data[0].questions[idQuestion].alternatives
+            );
         }
+
         getDate();
-    });
-
-    const themeName = data ? data.name : '';
-    const questions = useMemo(() => (data ? data.questions : []), [data]);
-    const [idQuestion, setIdQuestion] = useState(0);
-    const [alternatives, setAlternatives] = useState([]);
-
-    useEffect(() => {
-        setAlternatives(data ? questions[idQuestion].alternatives : []);
-    }, [data, idQuestion, questions]);
+    }, [theme, idQuestion]);
 
     const nick = useSelector((state) => state.questions.nick);
 
@@ -50,11 +53,11 @@ export default function Questions({ match, history }) {
     };
 
     if (!nick) {
-        return <UserInput />;
+        return <Start />;
     }
 
     return (
-        <>
+        <MainQuestion>
             <h1>{themeName}</h1>
             <Scoreboard
                 user={nick}
@@ -72,7 +75,7 @@ export default function Questions({ match, history }) {
                                 handleSelectedQuestion(alternative.id)
                             }
                         >
-                            {alternative.option}
+                            {alternative.text}
                         </Btn>
                     ))}
                 </BtnContainer>
@@ -84,12 +87,8 @@ export default function Questions({ match, history }) {
                 setIdQuestion={setIdQuestion}
                 history={history}
                 themeName={themeName}
+                setAlternatives={setAlternatives}
             />
-            {/* <NextBox>
-                <button type="button" onClick={handleNextQuestion}>
-                    <FaArrowRight size={24} />
-                </button>
-            </NextBox> */}
-        </>
+        </MainQuestion>
     );
 }

@@ -14,7 +14,8 @@ export default function NextButton({
     questions,
     setIdQuestion,
     history,
-    themeName
+    themeName,
+    setAlternatives
 }) {
     const dispatch = useDispatch();
 
@@ -33,6 +34,7 @@ export default function NextButton({
 
         if (idQuestion < questions.length - 1) {
             setIdQuestion(idQuestion + 1);
+            setAlternatives(questions[idQuestion].alternatives);
         } else {
             // Final
             const time = document.getElementById('time').innerText;
