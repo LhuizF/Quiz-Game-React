@@ -1,12 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { QuestionContainer, BtnContainer, MainQuestion, Btn } from './styled';
 import Scoreboard from '../../components/Scoreboard';
 import Start from '../../components/Start';
-import axios from '../../service/axios';
-
 import NextButton from '../../components/NextButton';
+import axios from '../../service/axios';
 
 export default function Questions({ match, history }) {
     const { theme } = match.params;
@@ -15,22 +14,18 @@ export default function Questions({ match, history }) {
     const [questions, setQuestions] = useState([]);
     const [idQuestion, setIdQuestion] = useState(0);
     const [alternatives, setAlternatives] = useState([]);
-    const [data, setData] = useState();
-
-    // const themeName = data ? data.name : '';
-    // const questions = useMemo(() => (data ? data.questions : []), [data]);
 
     useEffect(() => {
         async function getDate() {
-            const response = await axios.get(`/themes?path=${theme}`);
-            setData(response.data[0]);
-            setThemeName(response.data[0].name);
-            setQuestions(response.data[0].questions);
-            setAlternatives(
-                response.data[0].questions[idQuestion].alternatives
-            );
+            const { data } = await axios.get(`themes`);
+            const response = data.themes;
+            const dataTheme = response.filter(
+                (themes) => themes.path === theme
+            )[0];
+            setThemeName(dataTheme.name);
+            setQuestions(dataTheme.questions);
+            setAlternatives(dataTheme.questions[idQuestion].alternatives);
         }
-
         getDate();
     }, [theme, idQuestion]);
 

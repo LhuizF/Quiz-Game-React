@@ -12,8 +12,8 @@ export default function Home() {
 
     useEffect(() => {
         async function getDate() {
-            const response = await axios.get('/themes');
-            setThemes(response.data);
+            const { data } = await axios.get('/themes');
+            setThemes(data.themes);
         }
         getDate();
         dispatch(ResetUser());
@@ -26,7 +26,7 @@ export default function Home() {
                 {themes.map((theme) => (
                     <Link
                         to={`/questions/${theme.path}`}
-                        key={theme.id}
+                        key={theme._id}
                         className="link"
                     >
                         <QuestionDisplay>

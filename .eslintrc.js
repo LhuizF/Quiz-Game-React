@@ -28,6 +28,7 @@ module.exports = {
         'comma-dangle': ['error', 'never'],
         'no-unused-vars': 'off',
         'no-plusplus': 'off',
+        'no-underscore-dangle': 'off',
 
         // react
         'react/jsx-uses-react': 'error',

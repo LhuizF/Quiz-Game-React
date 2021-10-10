@@ -9,7 +9,7 @@ export default function Records() {
     useEffect(() => {
         async function getRecords() {
             const response = await axios.get('/records');
-            setRecords(response.data);
+            setRecords(response.data.records);
         }
         getRecords();
     }, []);
@@ -37,7 +37,7 @@ export default function Records() {
                     </tr>
                 </thead>
                 {records.map((record, i) => (
-                    <tbody key={record.id}>
+                    <tbody key={record._id}>
                         <tr>
                             <td className={`ptn-${i + 1}`}>{`${i + 1}°`}</td>
                             <td>{record.nick}</td>

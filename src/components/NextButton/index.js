@@ -34,7 +34,6 @@ export default function NextButton({
 
         if (idQuestion < questions.length - 1) {
             setIdQuestion(idQuestion + 1);
-            setAlternatives(questions[idQuestion].alternatives);
         } else {
             // Final
             const time = document.getElementById('time').innerText;
