@@ -12,14 +12,35 @@ import Page404 from '../pages/Page404';
 export default function Routes() {
     return (
         <Switch>
-            <PrivateRoute exact path="/" component={Home} header />
-            <PrivateRoute exact path="/login" component={Login} />
-            <PrivateRoute exact path="/register" component={Register} />
-            <PrivateRoute exact path="/score" component={Score} />
-            <PrivateRoute exact path="/records" component={Records} />
             <PrivateRoute
                 exact
-                path="/questions/:theme"
+                path="/Quiz-Game-React/"
+                component={Home}
+                header
+            />
+            <PrivateRoute
+                exact
+                path="/Quiz-Game-React/login"
+                component={Login}
+            />
+            <PrivateRoute
+                exact
+                path="/Quiz-Game-React/register"
+                component={Register}
+            />
+            <PrivateRoute
+                exact
+                path="/Quiz-Game-React/score"
+                component={Score}
+            />
+            <PrivateRoute
+                exact
+                path="/Quiz-Game-React/records"
+                component={Records}
+            />
+            <PrivateRoute
+                exact
+                path="/Quiz-Game-React/questions/:theme"
                 component={Questions}
             />
             <PrivateRoute path="*" component={Page404} />

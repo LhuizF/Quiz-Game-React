@@ -45,11 +45,10 @@ export default function Register() {
 
             <Div>
                 <p>
-                    Já possui conta? <Link to="/login"> Faça login </Link>
+                    Já possui conta?
+                    <Link to="/Quiz-Game-React/login"> Faça login </Link>
                 </p>
             </Div>
         </>
     );
 }
-
-// 577EEB

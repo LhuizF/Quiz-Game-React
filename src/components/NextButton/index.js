@@ -14,8 +14,7 @@ export default function NextButton({
     questions,
     setIdQuestion,
     history,
-    themeName,
-    setAlternatives
+    themeName
 }) {
     const dispatch = useDispatch();
 
@@ -40,7 +39,7 @@ export default function NextButton({
 
             dispatch(actions.NewUser({ nick, email, result, time, themeName }));
             result.length = 0;
-            history.push('/score');
+            history.push('/Quiz-Game-React/score');
         }
     };
 

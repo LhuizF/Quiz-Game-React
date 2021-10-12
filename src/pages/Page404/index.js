@@ -10,7 +10,9 @@ export default function Page404() {
             }}
         >
             <h1>Pagina não encontrada</h1>
-            <Link to="/">Clique aqui para retornar a Home </Link>
+            <Link to="/Quiz-Game-React/">
+                Clique aqui para retornar a Home.
+            </Link>
         </div>
     );
 }

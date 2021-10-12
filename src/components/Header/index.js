@@ -8,15 +8,15 @@ export default function Header() {
     return (
         <Nav>
             <div>
-                <Link to="/">
-                    <img src={logoWhite} alt="Logo" />{' '}
+                <Link to="/Quiz-Game-React/">
+                    <img src={logoWhite} alt="Logo" />
                 </Link>
                 <ul>
                     <li>
-                        <Link to="/records">Recordes</Link>
+                        <Link to="/Quiz-Game-React/records">Recordes</Link>
                     </li>
                     <li>
-                        <Link to="/login">Login</Link>
+                        <Link to="/Quiz-Game-React/login">Login</Link>
                     </li>
                 </ul>
             </div>

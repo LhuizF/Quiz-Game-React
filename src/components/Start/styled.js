@@ -55,13 +55,13 @@ export const MainDiv = styled.div`
         height: 42px;
         color: #fff;
         box-shadow: ${colors.mainDark} 0px 4px 0px 0px;
-        margin-top: 10px;
+        margin: 10px 0 2px;
         font-size: 16px;
         font-weight: bold;
 
         &:hover {
             height: 42px;
-            margin-top: 12px;
+            margin: 12px 0 0px;
             box-shadow: #1b3d9e 0px 2px 0px 0px;
         }
 

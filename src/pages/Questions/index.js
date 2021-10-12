@@ -17,11 +17,8 @@ export default function Questions({ match, history }) {
 
     useEffect(() => {
         async function getDate() {
-            const { data } = await axios.get(`themes`);
-            const response = data.themes;
-            const dataTheme = response.filter(
-                (themes) => themes.path === theme
-            )[0];
+            const { data } = await axios.get(`/themes`);
+            const dataTheme = data.filter((themes) => themes.path === theme)[0];
             setThemeName(dataTheme.name);
             setQuestions(dataTheme.questions);
             setAlternatives(dataTheme.questions[idQuestion].alternatives);
@@ -82,7 +79,6 @@ export default function Questions({ match, history }) {
                 setIdQuestion={setIdQuestion}
                 history={history}
                 themeName={themeName}
-                setAlternatives={setAlternatives}
             />
         </MainQuestion>
     );

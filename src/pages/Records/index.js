@@ -8,8 +8,8 @@ export default function Records() {
 
     useEffect(() => {
         async function getRecords() {
-            const response = await axios.get('/records');
-            setRecords(response.data.records);
+            const { data } = await axios.get('/records');
+            setRecords(data);
         }
         getRecords();
     }, []);

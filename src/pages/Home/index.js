@@ -13,7 +13,7 @@ export default function Home() {
     useEffect(() => {
         async function getDate() {
             const { data } = await axios.get('/themes');
-            setThemes(data.themes);
+            setThemes(data);
         }
         getDate();
         dispatch(ResetUser());
@@ -25,9 +25,8 @@ export default function Home() {
             <Themes>
                 {themes.map((theme) => (
                     <Link
-                        to={`/questions/${theme.path}`}
+                        to={`/Quiz-Game-React/questions/${theme.path}`}
                         key={theme._id}
-                        className="link"
                     >
                         <QuestionDisplay>
                             <img src={theme.thumbnail} alt="" />
