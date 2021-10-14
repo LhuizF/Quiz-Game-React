@@ -14,12 +14,15 @@ export default function Records() {
         getRecords();
     }, []);
 
-    records.sort((a, b) => {
-        if (a.score < b.score) {
-            return 1;
+    const handleThemeFilter = async (value) => {
+        if (!value) {
+            const { data } = await axios.get(`/records`);
+            setRecords(data);
+            return;
         }
-        return -1;
-    });
+        const { data } = await axios.get(`/records/${value}`);
+        setRecords(data);
+    };
 
     return (
         <>
@@ -29,7 +32,18 @@ export default function Records() {
                     <tr>
                         <th>N°</th>
                         <th>Nome</th>
-                        <th>Tema</th>
+                        <th>
+                            Tema
+                            <select
+                                onClick={(e) =>
+                                    handleThemeFilter(e.target.value)
+                                }
+                            >
+                                <option value="">Todos</option>
+                                <option value="math">Matemática</option>
+                                <option value="movie-theater">Cinema</option>
+                            </select>
+                        </th>
                         <th>Acertos</th>
                         <th>Tempo</th>
                         <th>Pontuação</th>
@@ -41,7 +55,7 @@ export default function Records() {
                         <tr>
                             <td className={`ptn-${i + 1}`}>{`${i + 1}°`}</td>
                             <td>{record.nick}</td>
-                            <td>{record.theme}</td>
+                            <td>{record.theme[1]}</td>
                             <td>{record.hits}</td>
                             <td>{record.time}</td>
                             <td>{record.score}</td>

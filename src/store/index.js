@@ -1,9 +1,9 @@
 import { createStore, combineReducers } from 'redux';
 
-import questions from './Questions/reducer';
+import user from './User/reducer';
 
 const rootReducer = combineReducers({
-    questions
+    user
 });
 
 const store = createStore(rootReducer);

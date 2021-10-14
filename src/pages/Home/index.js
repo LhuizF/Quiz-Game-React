@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Themes, QuestionDisplay } from './styled';
 import axios from '../../service/axios';
-import { ResetUser } from '../../store/Questions/actions';
+import { ResetUser } from '../../store/User/actions';
 
 export default function Home() {
     const dispatch = useDispatch();

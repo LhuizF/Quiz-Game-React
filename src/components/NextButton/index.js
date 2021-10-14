@@ -1,9 +1,9 @@
 import React from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { FaArrowRight } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-import * as actions from '../../store/Questions/actions';
+
+import * as actions from '../../store/User/actions';
 import { NextBox } from './styled';
 
 const result = [];
@@ -14,11 +14,11 @@ export default function NextButton({
     questions,
     setIdQuestion,
     history,
-    themeName
+    theme
 }) {
     const dispatch = useDispatch();
 
-    const { nick, email } = useSelector((state) => state.questions);
+    const { nick, email } = useSelector((state) => state.user);
 
     const handleNextQuestion = () => {
         const response = alternatives.filter(
@@ -37,7 +37,7 @@ export default function NextButton({
             // Final
             const time = document.getElementById('time').innerText;
 
-            dispatch(actions.NewUser({ nick, email, result, time, themeName }));
+            dispatch(actions.NewUser({ nick, theme, email, result, time }));
             result.length = 0;
             history.push('/Quiz-Game-React/score');
         }

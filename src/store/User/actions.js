@@ -1,9 +1,9 @@
-export function NewUser({ nick, email, result, time, themeName }) {
+export function NewUser({ nick, email, result, time, theme }) {
     return {
         type: 'SET_USER',
         payload: {
             nick,
-            theme: themeName,
+            theme,
             hits: result,
             time,
             score: 0,

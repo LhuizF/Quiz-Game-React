@@ -13,6 +13,10 @@ export const QuestionContainer = styled.div`
         text-align: center;
         color: #000;
     }
+
+    img {
+        width: 100%;
+    }
 `;
 
 export const BtnContainer = styled.div`

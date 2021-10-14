@@ -7,7 +7,6 @@ import store from './store';
 import Routes from './routes';
 import Header from './components/Header';
 import GlobalStyles, { Main } from './styles/GlobalStyles';
-import Footer from './components/Footer';
 
 function App() {
     return (
@@ -17,7 +16,6 @@ function App() {
                 <Main>
                     <Routes />
                 </Main>
-                <Footer />
                 <GlobalStyles />
                 <ToastContainer autoClose={3000} />
             </BrowserRouter>

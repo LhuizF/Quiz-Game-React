@@ -1,6 +1,6 @@
 const inicialState = {
     nick: '',
-    theme: '',
+    theme: [],
     hits: '',
     time: '',
     score: 0,
@@ -27,7 +27,7 @@ function calculateScore(hits, time) {
     return score;
 }
 
-function QuestionsReducer(state = inicialState, action) {
+function UserReducer(state = inicialState, action) {
     switch (action.type) {
         case 'SET_USER': {
             const newState = { ...inicialState };
@@ -55,4 +55,4 @@ function QuestionsReducer(state = inicialState, action) {
     }
 }
 
-export default QuestionsReducer;
+export default UserReducer;

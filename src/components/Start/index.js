@@ -5,7 +5,7 @@ import { isEmail } from 'validator';
 import { toast } from 'react-toastify';
 
 import { MainDiv } from './styled';
-import * as actions from '../../store/Questions/actions';
+import * as actions from '../../store/User/actions';
 import LogoQuiz from '../../assets/img/logo-quiz.png';
 
 export default function UserInput() {

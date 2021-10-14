@@ -17,16 +17,15 @@ export default function Questions({ match, history }) {
 
     useEffect(() => {
         async function getDate() {
-            const { data } = await axios.get(`/themes`);
-            const dataTheme = data.filter((themes) => themes.path === theme)[0];
-            setThemeName(dataTheme.name);
-            setQuestions(dataTheme.questions);
-            setAlternatives(dataTheme.questions[idQuestion].alternatives);
+            const { data } = await axios.get(`/themes/${theme}`);
+            setThemeName(data[0].name);
+            setQuestions(data[0].questions);
+            setAlternatives(data[0].questions[idQuestion].alternatives);
         }
         getDate();
     }, [theme, idQuestion]);
 
-    const nick = useSelector((state) => state.questions.nick);
+    const { nick } = useSelector((state) => state.user);
 
     const handleSelectedQuestion = (id) => {
         const newAlternatives = alternatives.map((alternative) => {
@@ -58,6 +57,11 @@ export default function Questions({ match, history }) {
             />
             <QuestionContainer>
                 <p>{questions[idQuestion].text}</p>
+                {questions[idQuestion].img ? (
+                    <img src={questions[idQuestion].img} alt="" />
+                ) : (
+                    ''
+                )}
                 <BtnContainer>
                     {alternatives.map((alternative) => (
                         <Btn
@@ -78,7 +82,7 @@ export default function Questions({ match, history }) {
                 questions={questions}
                 setIdQuestion={setIdQuestion}
                 history={history}
-                themeName={themeName}
+                theme={[theme, themeName]}
             />
         </MainQuestion>
     );

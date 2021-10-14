@@ -43,6 +43,15 @@ export const TableContainer = styled.table`
         }
     }
 
+    select {
+        border: none;
+        text-align: center;
+        width: 80%;
+        font-family: inherit;
+        font-size: 16px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    }
+
     @media (max-width: 800px) {
         font-size: 10px;
 

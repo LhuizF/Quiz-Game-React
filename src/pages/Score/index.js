@@ -3,24 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { useLocation } from 'react-router-dom';
 import { ScoreContainer } from './styled';
-import * as actions from '../../store/Questions/actions';
+import * as actions from '../../store/User/actions';
 import axios from '../../service/axios';
 
 export default function Score() {
     const dispatch = useDispatch();
     const location = useLocation();
     const { nick, theme, hits, time, score } = useSelector(
-        (state) => state.questions
+        (state) => state.user
     );
-
-    const getDate = () => {
-        const hours = new Date().toLocaleTimeString('pt-br', {
-            timeStyle: 'short'
-        });
-        const date = new Date().toLocaleDateString();
-
-        return `${date} ${hours}`;
-    };
 
     useEffect(() => {
         async function postRecord() {
@@ -29,8 +20,7 @@ export default function Score() {
                 theme,
                 hits,
                 time,
-                score,
-                date: getDate()
+                score
             });
         }
 
@@ -57,7 +47,7 @@ export default function Score() {
 
                     <div>
                         <h2>Tema</h2>
-                        <p>{theme}</p>
+                        <p>{theme[1]}</p>
                     </div>
 
                     <div>

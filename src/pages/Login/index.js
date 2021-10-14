@@ -11,6 +11,7 @@ export default function Login() {
         e.preventDefault();
         console.log(e);
     };
+
     return (
         <>
             <MainForm onSubmit={handleSubmit}>
@@ -43,5 +44,3 @@ export default function Login() {
         </>
     );
 }
-
-// 577EEB
