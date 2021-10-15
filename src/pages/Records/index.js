@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 
 import { TableContainer } from './styled';
 import axios from '../../service/axios';
+import Loading from '../../components/Loading';
 
 export default function Records() {
     const [records, setRecords] = useState([]);
-
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         async function getRecords() {
+            setIsLoading(true);
             const { data } = await axios.get('/records');
             setRecords(data);
+            setIsLoading(false);
         }
         getRecords();
     }, []);
@@ -27,6 +30,7 @@ export default function Records() {
     return (
         <>
             <h1>Recordes</h1>
+            <Loading isLoading={isLoading} />
             <TableContainer>
                 <thead>
                     <tr>

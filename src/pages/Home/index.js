@@ -5,15 +5,19 @@ import { useDispatch } from 'react-redux';
 import { Themes, QuestionDisplay } from './styled';
 import axios from '../../service/axios';
 import { ResetUser } from '../../store/User/actions';
+import Loading from '../../components/Loading';
 
 export default function Home() {
     const dispatch = useDispatch();
     const [themes, setThemes] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         async function getDate() {
+            setIsLoading(true);
             const { data } = await axios.get('/themes');
             setThemes(data);
+            setIsLoading(false);
         }
         getDate();
         dispatch(ResetUser());
@@ -22,6 +26,7 @@ export default function Home() {
     return (
         <>
             <h1>Escolha um tema</h1>
+            <Loading isLoading={isLoading} />
             <Themes>
                 {themes.map((theme) => (
                     <Link
