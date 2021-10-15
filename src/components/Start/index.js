@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { HiUserCircle, HiLockClosed } from 'react-icons/hi';
 import { isEmail } from 'validator';
@@ -6,13 +6,24 @@ import { toast } from 'react-toastify';
 
 import { MainDiv } from './styled';
 import * as actions from '../../store/User/actions';
+import { NewQuestion } from '../../store/Question/actions';
 import LogoQuiz from '../../assets/img/logo-quiz.png';
+import axios from '../../service/axios';
 
-export default function UserInput() {
+export default function UserInput({ themeId }) {
     const dispatch = useDispatch();
     const [nick, setUser] = useState('');
     const [email, setEmail] = useState('');
 
+    useEffect(() => {
+        async function getQuestions() {
+            const response = await axios.get(`/questions/${themeId}`);
+            const question = response.data;
+            dispatch(NewQuestion({ question }));
+        }
+
+        getQuestions();
+    });
     const handleStart = () => {
         if (nick.length < 3 || nick.length > 12) {
             toast.error('Nick deve ter entre 3 a 12 caracteres');

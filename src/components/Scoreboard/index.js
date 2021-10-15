@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-
+import { useSelector } from 'react-redux';
 import { ScoreboardDiv } from './styled';
 
-export default function Scoreboard({ user, questionsLength, idQuestion }) {
+export default function Scoreboard({ user }) {
+    const { questions, id } = useSelector((state) => state.question);
     const [time, setTime] = useState('00:00');
     const date = (seg) => new Date(seg * 1000).toISOString().substr(14, 5);
     let seg = 0;
@@ -24,7 +25,7 @@ export default function Scoreboard({ user, questionsLength, idQuestion }) {
                 <strong>{user}</strong>
                 <p>Perguntas</p>
                 <p>
-                    {idQuestion + 1}/{questionsLength}
+                    {id + 1}/{questions.length}
                 </p>
                 <p>Tempo</p>
                 <p id="time">{time}</p>

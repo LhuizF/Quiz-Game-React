@@ -1,24 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaArrowRight } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
-import * as actions from '../../store/User/actions';
+import { NewUser } from '../../store/User/actions';
+import { SetAlternative, ResetQuestion } from '../../store/Question/actions';
+import QuestionContainer from '../QuestionContainer';
 import { NextBox } from './styled';
 
-const result = [];
-
-export default function NextButton({
-    alternatives,
-    idQuestion,
-    questions,
-    setIdQuestion,
-    history,
-    theme
-}) {
+export default function NextButton({ history, theme }) {
     const dispatch = useDispatch();
+    const [result, setResult] = useState([]);
 
     const { nick, email } = useSelector((state) => state.user);
+    const { questions, alternatives } = useSelector((state) => state.question);
 
     const handleNextQuestion = () => {
         const response = alternatives.filter(
@@ -31,23 +26,23 @@ export default function NextButton({
         }
         result.push(response);
 
-        if (idQuestion < questions.length - 1) {
-            setIdQuestion(idQuestion + 1);
-        } else {
-            // Final
+        dispatch(SetAlternative());
+        if (result.length === questions.length) {
             const time = document.getElementById('time').innerText;
-
-            dispatch(actions.NewUser({ nick, theme, email, result, time }));
-            result.length = 0;
+            dispatch(NewUser({ nick, email, result, time, theme }));
+            setResult([]);
             history.push('/Quiz-Game-React/score');
         }
     };
 
     return (
-        <NextBox>
-            <button type="button" onClick={handleNextQuestion}>
-                <FaArrowRight size={24} />
-            </button>
-        </NextBox>
+        <>
+            <QuestionContainer questions={questions} />
+            <NextBox>
+                <button type="button" onClick={handleNextQuestion}>
+                    <FaArrowRight size={24} />
+                </button>
+            </NextBox>
+        </>
     );
 }

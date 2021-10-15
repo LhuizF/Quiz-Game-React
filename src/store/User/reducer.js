@@ -11,7 +11,6 @@ function verification(hits) {
     const correct = hits.filter((alternative) => {
         return alternative.isTrue && alternative.selected;
     });
-
     return `${correct.length}/${hits.length}`;
 }
 
@@ -30,7 +29,7 @@ function calculateScore(hits, time) {
 function UserReducer(state = inicialState, action) {
     switch (action.type) {
         case 'SET_USER': {
-            const newState = { ...inicialState };
+            const newState = { ...state };
             newState.nick = action.payload.nick;
             newState.email = action.payload.email;
             if (action.payload.hits) {
@@ -42,7 +41,6 @@ function UserReducer(state = inicialState, action) {
                     action.payload.time
                 );
             }
-
             return newState;
         }
 

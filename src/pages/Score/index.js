@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { useLocation } from 'react-router-dom';
 import { ScoreContainer } from './styled';
-import * as actions from '../../store/User/actions';
+import { ResetUser } from '../../store/User/actions';
+import { ResetQuestion } from '../../store/Question/actions';
 import axios from '../../service/axios';
 
 export default function Score() {
@@ -12,7 +13,6 @@ export default function Score() {
     const { nick, theme, hits, time, score } = useSelector(
         (state) => state.user
     );
-
     useEffect(() => {
         async function postRecord() {
             await axios.post('/records', {
@@ -30,7 +30,8 @@ export default function Score() {
 
         return () => {
             if (location !== '/score') {
-                dispatch(actions.ResetUser());
+                dispatch(ResetUser());
+                dispatch(ResetQuestion());
             }
         };
     }, [location, dispatch, nick, theme, hits, time, score]);
