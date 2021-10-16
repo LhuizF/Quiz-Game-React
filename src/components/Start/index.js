@@ -10,15 +10,22 @@ import { NewQuestion } from '../../store/Question/actions';
 import LogoQuiz from '../../assets/img/logo-quiz.png';
 import axios from '../../service/axios';
 
-export default function UserInput({ themeId }) {
+export default function UserInput({ themeId, history }) {
     const dispatch = useDispatch();
     const [nick, setUser] = useState('');
     const [email, setEmail] = useState('');
 
     useEffect(() => {
         async function getQuestions() {
+            if (!themeId) return;
+
             const response = await axios.get(`/questions/${themeId}`);
             const question = response.data;
+            if (question.length === 0) {
+                toast.error('Algo deu errado');
+                history.push('/Quiz-Game-React');
+                return;
+            }
             dispatch(NewQuestion({ question }));
         }
 

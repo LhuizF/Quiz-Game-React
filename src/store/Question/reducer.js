@@ -1,3 +1,10 @@
+const inicialState = {
+    id: 0,
+    questions: {},
+    questionSelected: [],
+    alternatives: []
+};
+
 const setQuestionSelected = (questions, id) => questions[id];
 const setAlternatives = (selected) => selected.alternatives;
 
@@ -7,13 +14,6 @@ const setId = (questions, id) => {
     }
 
     return id;
-};
-
-const inicialState = {
-    id: 0,
-    questions: {},
-    questionSelected: [],
-    alternatives: []
 };
 
 function QuestionReducer(state = inicialState, action) {

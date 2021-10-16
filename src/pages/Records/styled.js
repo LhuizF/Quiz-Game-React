@@ -5,6 +5,7 @@ export const TableContainer = styled.table`
     width: 100%;
     margin: 0 auto;
     max-width: 1000px;
+    min-width: 800px;
     text-align: center;
     border: 1px solid white;
     border-collapse: collapse;

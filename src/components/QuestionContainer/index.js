@@ -38,6 +38,7 @@ export default function QuestionContainer() {
                         key={alternative.id}
                         selected={alternative.selected}
                         onClick={() => handleSelectedQuestion(alternative.id)}
+                        text={alternative.text}
                     >
                         {alternative.text}
                     </Btn>

@@ -36,6 +36,8 @@ export const BtnContainer = styled.div`
 `;
 
 export const Btn = styled.button`
+    ${(props) =>
+        props.text.length > 28 ? 'font-size: 16px;' : 'font-size: 20px;'};
     width: 45%;
     height: 48px;
     border-radius: 12px;
@@ -43,7 +45,6 @@ export const Btn = styled.button`
     margin-top: 10px;
     color: #fff;
     box-shadow: rgb(0 0 0 / 30%) 0px -4px inset;
-    font-size: 20px;
     font-weight: bold;
 
     ${(props) => {

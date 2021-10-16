@@ -24,7 +24,7 @@ export default function Questions({ match, history }) {
     }, [theme]);
 
     if (!nick) {
-        return <Start themeId={themeId} />;
+        return <Start themeId={themeId} history={history} />;
     }
 
     return (

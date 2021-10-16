@@ -6,11 +6,15 @@ import Loading from '../../components/Loading';
 
 export default function Records() {
     const [records, setRecords] = useState([]);
+    const [themes, setThemes] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
         async function getRecords() {
             setIsLoading(true);
+            const response = await axios.get('/themes');
             const { data } = await axios.get('/records');
+            setThemes(response.data);
             setRecords(data);
             setIsLoading(false);
         }
@@ -44,8 +48,16 @@ export default function Records() {
                                 }
                             >
                                 <option value="">Todos</option>
-                                <option value="math">Matemática</option>
-                                <option value="movie-theater">Cinema</option>
+                                {themes.map((theme) => {
+                                    return (
+                                        <option
+                                            key={theme._id}
+                                            value={theme.path}
+                                        >
+                                            {theme.name}
+                                        </option>
+                                    );
+                                })}
                             </select>
                         </th>
                         <th>Acertos</th>

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import { ScoreContainer } from './styled';
 import { ResetUser } from '../../store/User/actions';
 import { ResetQuestion } from '../../store/Question/actions';
@@ -13,15 +14,17 @@ export default function Score() {
     const { nick, theme, hits, time, score } = useSelector(
         (state) => state.user
     );
+
     useEffect(() => {
         async function postRecord() {
-            await axios.post('/records', {
+            const { data } = await axios.post('/records', {
                 nick,
                 theme,
                 hits,
                 time,
                 score
             });
+            toast.success(data.message);
         }
 
         if (nick) {
