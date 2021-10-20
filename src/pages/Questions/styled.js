@@ -12,6 +12,7 @@ export const QuestionContainer = styled.div`
         font-size: 24px;
         text-align: center;
         color: #000;
+        margin-bottom: 5px;
     }
 
     img {

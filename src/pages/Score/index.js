@@ -11,7 +11,7 @@ import axios from '../../service/axios';
 export default function Score() {
     const dispatch = useDispatch();
     const location = useLocation();
-    const { nick, theme, hits, time, score } = useSelector(
+    const { nick, theme, hits, time, score, email } = useSelector(
         (state) => state.user
     );
 
@@ -22,6 +22,7 @@ export default function Score() {
                 theme,
                 hits,
                 time,
+                email,
                 score
             });
             toast.success(data.message);
@@ -37,7 +38,7 @@ export default function Score() {
                 dispatch(ResetQuestion());
             }
         };
-    }, [location, dispatch, nick, theme, hits, time, score]);
+    }, [location, dispatch, nick, theme, hits, time, score, email]);
 
     return (
         <>

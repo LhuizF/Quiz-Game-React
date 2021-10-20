@@ -27,8 +27,8 @@ export default function QuestionContainer() {
     return (
         <MainContainer>
             <p>{questionSelected.text}</p>
-            {questionSelected.img ? (
-                <img src={questionSelected.img} alt="" />
+            {questionSelected.image ? (
+                <img src={questionSelected.image} alt="" />
             ) : (
                 ''
             )}

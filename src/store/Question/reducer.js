@@ -5,7 +5,10 @@ const inicialState = {
     alternatives: []
 };
 
-const setQuestionSelected = (questions, id) => questions[id];
+const setQuestionSelected = (questions, id) => {
+    console.log();
+    return questions[id];
+};
 const setAlternatives = (selected) => selected.alternatives;
 
 const setId = (questions, id) => {
@@ -16,11 +19,19 @@ const setId = (questions, id) => {
     return id;
 };
 
+const shuffleArray = (arr) => {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+};
+
 function QuestionReducer(state = inicialState, action) {
     switch (action.type) {
         case 'SET_QUESTION': {
             const newState = { ...state };
-            newState.questions = action.payload.question;
+            newState.questions = shuffleArray(action.payload.question);
             newState.questionSelected = setQuestionSelected(
                 newState.questions,
                 newState.id
@@ -56,3 +67,4 @@ function QuestionReducer(state = inicialState, action) {
 }
 
 export default QuestionReducer;
+// random

@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Themes, QuestionDisplay } from './styled';
 import axios from '../../service/axios';
 import { ResetUser } from '../../store/User/actions';
+import { ResetQuestion } from '../../store/Question/actions';
 import Loading from '../../components/Loading';
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
         }
         getDate();
         dispatch(ResetUser());
+        dispatch(ResetQuestion());
     }, [dispatch]);
 
     return (

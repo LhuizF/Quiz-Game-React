@@ -36,8 +36,13 @@ export const BtnContainer = styled.div`
 `;
 
 export const Btn = styled.button`
-    ${(props) =>
-        props.text.length > 28 ? 'font-size: 16px;' : 'font-size: 20px;'};
+    ${(props) => {
+        if (props.text.length >= 28) return 'font-size: 14px;';
+
+        if (props.text.length >= 22) return 'font-size: 16px;';
+
+        return 'font-size: 20px;';
+    }};
     width: 45%;
     height: 48px;
     border-radius: 12px;
@@ -47,26 +52,24 @@ export const Btn = styled.button`
     box-shadow: rgb(0 0 0 / 30%) 0px -4px inset;
     font-weight: bold;
 
-    ${(props) => {
-        if (props.selected) {
-            return `
+    ${(props) =>
+        props.selected
+            ? `
             height: 44px;
             margin-top: 14px;
             box-shadow: none;
             filter: brightness(0.65);
-            `;
-        }
-
-        return `
-        &:hover {
+            `
+            : `
+            &:hover {
             height: 46px;
             margin-top: 12px;
             box-shadow: rgb(0 0 0 / 25%) 0px -2px inset;
-        }
+            }
         &:active {
             height: 44px;
             margin-top: 14px;
             box-shadow: none;
-        }`;
-    }}
+        }
+    `}
 `;
