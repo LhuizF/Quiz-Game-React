@@ -15,9 +15,9 @@ export default function Header() {
                     <li>
                         <Link to="/Quiz-Game-React/records">Recordes</Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to="/Quiz-Game-React/login">Login</Link>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </Nav>

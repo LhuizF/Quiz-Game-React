@@ -2,13 +2,12 @@ import styled from 'styled-components';
 import colors from '../../styles/colors';
 
 export const TableContainer = styled.table`
-    width: 100%;
     margin: 0 auto;
-    max-width: 1000px;
-    min-width: 800px;
     text-align: center;
     border: 1px solid white;
     border-collapse: collapse;
+    max-width: 1100px;
+    width: 90%;
 
     th,
     td {
@@ -54,12 +53,10 @@ export const TableContainer = styled.table`
     }
 
     @media (max-width: 800px) {
-        font-size: 10px;
-
         tbody,
         thead {
             th {
-                font-size: 10px;
+                font-size: 14px;
             }
             th:nth-child(5),
             th:nth-child(7) {
@@ -69,6 +66,21 @@ export const TableContainer = styled.table`
             td:nth-child(7) {
                 display: none;
             }
+        }
+    }
+
+    @media (max-width: 500px) {
+        tbody,
+        thead {
+            th,
+            td {
+                font-size: 12px;
+                padding: 3px 5px;
+            }
+        }
+
+        select {
+            font-size: 10px;
         }
     }
 `;

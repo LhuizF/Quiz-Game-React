@@ -26,15 +26,19 @@ export const Container = styled.div`
     span {
         width: 130px;
         height: 130px;
-        border: 10px solid ${colors.main};
-        border-top-color: #eaeaea;
+        background-color: ${colors.main};
         border-radius: 50%;
         animation: gif 1s infinite;
     }
 
     @keyframes gif {
-        to {
-            transform: rotate(1turn);
+        0% {
+            transform: scale(0);
+            opacity: 18;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 0;
         }
     }
 `;

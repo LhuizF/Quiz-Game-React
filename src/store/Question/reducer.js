@@ -67,4 +67,3 @@ function QuestionReducer(state = inicialState, action) {
 }
 
 export default QuestionReducer;
-// random

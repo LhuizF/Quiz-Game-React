@@ -18,7 +18,7 @@ export default function Routes() {
                 component={Home}
                 header
             />
-            <PrivateRoute
+            {/* <PrivateRoute
                 exact
                 path="/Quiz-Game-React/login"
                 component={Login}
@@ -27,7 +27,7 @@ export default function Routes() {
                 exact
                 path="/Quiz-Game-React/register"
                 component={Register}
-            />
+            /> */}
             <PrivateRoute
                 exact
                 path="/Quiz-Game-React/score"
